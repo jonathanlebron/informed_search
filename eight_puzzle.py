@@ -65,9 +65,7 @@ class EightPuzzle():
 
     def swap(self, tile1, tile2):
         new_puzzle = self.puzzle[:]
-        temp_tile = new_puzzle[tile1]
-        new_puzzle[tile1] = new_puzzle[tile2]
-        new_puzzle[tile2] = temp_tile
+        new_puzzle[tile1], new_puzzle[tile2] = new_puzzle[tile2], new_puzzle[tile1]
 
         return new_puzzle
 
@@ -75,9 +73,5 @@ class EightPuzzle():
         """
         Returns a list of valid successors to the current state.
         """
-        valid_ops = []
         all_ops = [self.move_up(), self.move_down(), self.move_left(), self.move_right()]
-        for op in all_ops:
-            if op:
-                valid_ops.append(op)
-        return valid_ops
+        return [op for op in all_ops if op]
